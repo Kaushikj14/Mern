@@ -1,0 +1,17 @@
+footer{
+    text-align: center;
+    padding: 3.2rem;
+    background-color: var(--btn-color);
+    margin-top: auto;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+a{
+    color: aliceblue;
+}
+a:hover{
+    color: wheat;
+}
+
+
