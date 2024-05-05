@@ -6,6 +6,17 @@ require("dotenv").config();
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 const contactRoute = require("./router/contact-router")
+var cors = require('cors')
+
+// let's tackle cors
+// const corsOptions = {origin:" ",methods:"GET,POST,PUT,DELETE,PATCH,HEAD",credentials:true}
+
+var corsOptions = {
+    origin: 'http://localhost:5173',
+    methods:"GET,POST,PUT,DELETE,PATCH,HEAD",credentials:true // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
+app.use(cors(corsOptions))
 
 // Middlewares
 app.use(express.json());

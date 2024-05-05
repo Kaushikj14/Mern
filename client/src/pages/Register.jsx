@@ -4,8 +4,8 @@ export const Register = () => {
   const [user, setUser] = useState({
     username: "",
     email: "",
-    phone: "",
     password: "",
+    phone: "",
   });
 
   const handleInput = (e) => {
@@ -17,15 +17,30 @@ export const Register = () => {
       ...user,
       [name]: value,
     });
+
+
+
   };
 
   // handle form on submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
+    
+    try {
+    // Most important code
+    const response = await fetch(`http://localhost:5500/api/auth/register`,
+                                  {
+                                    method: 'POST',
+                                  headers:{'Content-Type':'application/json'},
+                                  body:JSON.stringify(user),});
+                                  console.log("===============================================>");
+                                  console.log(response);
+    } catch (error) {
+      console.log("Error in resgistration",error);
+    }
   };
 
-  //  Help me reach 1 Million subs 👉 https://youtube.com/thapatechnical
 
   return (
     <>
