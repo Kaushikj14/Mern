@@ -45,7 +45,8 @@ a{
   font-weight: 500;
   font-size: 1.8rem;
   letter-spacing: 0.1rem;
-  color: var(--btn-color);
+  /* color: var(--btn-color); */
+  color:white;
   text-decoration: inherit;
 }
 
@@ -102,7 +103,7 @@ button:hover{
 }
 
 a:hover, a:active{
-  color: white;
+  color: var(--btn-color);
 }
 
 /* hero section start */

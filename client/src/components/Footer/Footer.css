@@ -7,11 +7,9 @@ footer{
     justify-content: space-evenly;
     
 }
+
 a{
-    color: aliceblue;
-}
-a:hover{
-    color: wheat;
+    color: white;
 }
 
 
