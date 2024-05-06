@@ -9,6 +9,8 @@ export const Register = () => {
     phone: "",
   });
 
+  const navigate = useNavigate();
+
   const handleInput = (e) => {
     console.log(e);
     let name = e.target.name;
@@ -44,6 +46,7 @@ export const Register = () => {
             phone:"",
             password:"",}
           );
+          navigate("/login")
 
         }                          
 
