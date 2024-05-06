@@ -29,13 +29,15 @@ export const Register = () => {
     
     try {
     // Most important code
-    const response = await fetch(`http://localhost:5500/api/auth/register`,
-                                  {
-                                    method: 'POST',
+    const response = await fetch(`http://localhost:5500/api/auth/register`, {
+                                  method: 'POST',
                                   headers:{'Content-Type':'application/json'},
                                   body:JSON.stringify(user),});
                                   console.log("===============================================>");
                                   console.log(response);
+
+    // const response_1 = await fetch('http://localhost:5500/api/auth/register',{method:"POST",headers:{'Content-Type':'application/json'},body:JSON.stringify(user)});
+    // console.log(response_1);
     } catch (error) {
       console.log("Error in resgistration",error);
     }
