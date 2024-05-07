@@ -4,7 +4,7 @@ import { useAuth } from "../store/auth";
 
 export const Register = () => {
   const [user, setUser] = useState({
-    username: "",
+    userName: "",
     email: "",
     password: "",
     phone: "",
@@ -38,7 +38,7 @@ export const Register = () => {
     const response = await fetch(`http://localhost:5500/api/auth/register`, {
                                   method: "POST",
                                   headers:{'Content-Type':'application/json'},
-                                  body:JSON.stringify(user),});
+                                  body:JSON.stringify(user)});
                                   console.log("===============================================>");
                                   console.log(response);
 
@@ -49,7 +49,7 @@ export const Register = () => {
           // stored data in localhost
           storeTokenInLS(res_data.token);
 
-          setUser( { username:"", email:'', phone:"", password:"",});
+          setUser( { userName:"", email:'', phone:"", password:"",});
           navigate("/login")
 
         }                          
@@ -81,13 +81,13 @@ export const Register = () => {
                 <br />
                 <form onSubmit={handleSubmit}>
                   <div>
-                    <label htmlFor="username">username</label>
+                    <label htmlFor="userName">username</label>
                     <input
                       type="text"
-                      name="username"
-                      value={user.username}
+                      name="userName"
+                      value={user.userName}
                       onChange={handleInput}
-                      placeholder="username"
+                      placeholder="userName"
                     />
                   </div>
                   <div>
