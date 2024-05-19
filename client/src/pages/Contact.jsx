@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "../store/auth";
 
 export const Contact = () => {
   const [contact, setContact] = useState({
@@ -6,6 +7,20 @@ export const Contact = () => {
     email: "",
     message: "",
   });
+
+  const [userData,setUserData] = useState(true);
+  const {user} = useAuth();
+
+
+  if(userData && user){
+    setContact({
+      username:user.userName,
+      email:user.email,
+      message:"",
+    })
+
+    setUserData(false);
+  }
 
   // lets tackle our handleInput
   const handleInput = (e) => {
@@ -101,9 +116,9 @@ export const Contact = () => {
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14767.146429830822!2d73.17036245!3d22.28607185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc7d21a812849%3A0x8f4b458d00cd1a22!2sRoyal%20Orchid%20Central!5e0!3m2!1sen!2sin!4v1714793062745!5m2!1sen!2sin" 
           width="100%" 
           height="450" 
-        allowfullscreen 
+          allowFullScreen 
         loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
+        referrerPolicy="no-referrer-when-downgrade">
 
         </iframe>
         </section>
