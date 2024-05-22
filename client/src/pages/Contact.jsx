@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
 
+const defaultContactFormData = {
+  userName:"",
+  email:"",
+  message:"",
+};
+
 export const Contact = () => {
-  const [contact, setContact] = useState({
-    username: "",
-    email: "",
-    message: "",
-  });
+  // const [contact, setContact] = useState({
+  //   username: "",
+  //   email: "",
+  //   message: "",
+  // });
+
+  const [contact, setContact] = useState(defaultContactFormData);
+
 
   const [userData,setUserData] = useState(true);
   const {user} = useAuth();
@@ -14,7 +23,7 @@ export const Contact = () => {
 
   if(userData && user){
     setContact({
-      username:user.userName,
+      userName:user.userName,
       email:user.email,
       message:"",
     })
@@ -34,10 +43,31 @@ export const Contact = () => {
   };
 
   // handle fomr getFormSubmissionInfo
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(contact);
+    
+
+    try {
+      const response = await fetch("http://localhost:5500/api/form/contact",{
+                                    method: "POST",
+                                    headers:{'Content-Type':'application/json'},
+                                    body:JSON.stringify(contact),
+                                  },
+                                );
+                                console.log(response);
+
+      if(response.ok){
+        setContact(defaultContactFormData);
+        const data = await response.json();
+        console.log(data);
+      }                          
+
+    } catch (error) {
+      console.log(error);
+    }
+
+    // console.log(contact);
   };
 
 //  Help me reach 1 Million subs 👉 https://youtube.com/thapatechnical
@@ -61,10 +91,10 @@ export const Contact = () => {
                 <label htmlFor="username">username</label>
                 <input
                   type="text"
-                  name="username"
-                  id="username"
+                  name="userName"
+                  id="userName"
                   autoComplete="off"
-                  value={contact.username}
+                  value={contact.userName}
                   onChange={handleInput}
                   required
                 />
