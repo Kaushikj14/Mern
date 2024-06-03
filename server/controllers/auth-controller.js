@@ -30,7 +30,7 @@ const register = async (req,res)=>{
         
         
         res.status(201).json({
-            msg:"registration succesfull",
+            message:"registration succesfull",
             token: await userCreated.generateToken(),
             userId: userCreated._id.toString(),
         })
@@ -54,6 +54,7 @@ const login = async (req,res)=>{
         const userExists = await User.findOne({email:email});
         if(!userExists){
             res.status(400).json({message:"Invalid Credentials"});
+            return ;
         }
 
         const user = await userExists.comparePassword(password);
@@ -61,17 +62,19 @@ const login = async (req,res)=>{
 
         if(user){
             res.status(201).json({
-                msg:"Login succesfull",
+                message:"Login succesfull",
                 token: await userExists.generateToken(),
                 userId: userExists._id.toString(),
             })
         }else{
             res.status(401).json({message:"Invalid email or password"});
+            return;
         }
 
     } catch (error) {
-        // res.status(500).json("Internal server error");
+        res.status(500).json("Internal server error");
         next(error);
+        return;
     }
 }
 

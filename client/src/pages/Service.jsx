@@ -2,7 +2,8 @@ import { useAuth } from "../store/auth";
 
 export const Service = ()=>{
     const {services}=useAuth();
-    console.log(services);
+    console.log("Data of services",services);
+    // services = JSON.parse(services);
 
     return (
         <section className="section-services">
@@ -13,7 +14,8 @@ export const Service = ()=>{
             </div>
 
             <div className="conatiner grid grid-three-cols">
-            {/* {
+            {
+                
                 // services.map((currEle,index)=>{
                 //     return (
                 //     <div className="card" key={index}>
@@ -32,7 +34,7 @@ export const Service = ()=>{
     
                 // </div>);
                 // })   
-            } */}
+            } 
             </div>
 
         </section>
