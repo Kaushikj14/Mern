@@ -35,18 +35,16 @@ export const Login = ()=>{
           body:JSON.stringify(user),});
           
           console.log(response);
+          const res_data = await response.json();
 
           if(response.ok){
             alert("Login succesfull");
-
-            const res_data = await response.json();
           // console.log("res from server ",res_data.token);
-
             storeTokenInLS(res_data.token);
-
             setUser({email:"",password:""});
             navigate("/");
           }else{
+            alert(res_data.extraDetails?res_data.extraDetails:res_data.message)
             console.log("Invalid credentials");
           }
 

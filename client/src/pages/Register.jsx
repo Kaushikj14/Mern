@@ -42,16 +42,17 @@ export const Register = () => {
                                   console.log("===============================================>");
                                   console.log(response);
 
-        if(response.ok){
-          const res_data = await response.json();
-          // console.log("res from server ",res_date);
-          
+    const res_data = await response.json();
+    console.log("res from server ",res_data);
+        
+    if(response.ok){
           // stored data in localhost
           storeTokenInLS(res_data.token);
-
           setUser( { userName:"", email:'', phone:"", password:"",});
           navigate("/login")
 
+        }else{
+          alert(res_data.extraDetails?res_data.extraDetails:res_data.message)
         }                          
 
 
